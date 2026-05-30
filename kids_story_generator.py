@@ -56,7 +56,91 @@ TRENDING_TOPICS = [
     "Nalanda University - Teacher Shilabhadra, student Xuanzang, librarian Dharmakirti, and elephant Bodhi study at the world's first university - MORAL: Education is the light that removes darkness",
     "Chanakya's clever plan - Wise teacher Chanakya, young student Chandragupta, helper Sharangrav, and spy Ratnagupta work together to free India - MORAL: Intelligence defeats even the mightiest enemy",
     "Rajendra Chola's sea voyage - Brave king Rajendra, naval commander Arjuna, navigator Samudra, and parrot guide Kili sail across the ocean - MORAL: Courage and curiosity lead to great discoveries",
-    "Gommateshwara statue - King Chavundaraya, sculptor Arishtanemi, mother Kalala, and elephant Bahubali build the giant statue of peace - MORAL: Peace is the greatest victory"
+    "Gommateshwara statue - King Chavundaraya, sculptor Arishtanemi, mother Kalala, and elephant Bahubali build the giant statue of peace - MORAL: Peace is the greatest victory",
+    "Akbar and Birbal's clever lesson - Young Akbar, witty Birbal, courtiers and a clever monkey learn that honesty matters - MORAL: Truth and fairness win respect",
+    "Vikram and Betaal's riddles - Brave king Vikram, ghostly Betaal, and court sages solve puzzles to learn wisdom - MORAL: Think before you act",
+    "Ram and Sita's forest adventure - Little Rama, sister Sita, loyal brother Lakshmana, and monkey friend Hanuman learn about duty and love - MORAL: Kindness and courage go together",
+    "Hanuman's leap of faith - Young Hanuman, monkey warriors, and Lord Rama help each other to find strength - MORAL: Faith and friendship move mountains",
+    "The clever rabbit and the lion (Panchatantra) - A quick-thinking rabbit, proud lion, and friendly tortoise teach cleverness over strength - MORAL: Brains can beat brawn",
+    "The greedy dog learns sharing - A greedy dog, kind children, and a wise farmer learn to share food - MORAL: Sharing brings happiness",
+    "The mango tree and the children - A magical mango tree, playful kids, and a caring gardener show gratitude - MORAL: Respect nature and be thankful",
+    "The boy who planted trees - Young boy Arjun, villagers, and a thirsty land bring life back with patience - MORAL: Small acts grow big change",
+    "The little boat and the big river - A tiny boat, helpful fish, and wise elder teach perseverance - MORAL: Keep going even when waves come",
+    "Sage Valmiki's change - Young hunter turned poet Valmiki, family, and the forest learn redemption - MORAL: People can change for the better",
+    "The lost jewel of the palace - Princess Meera, brave guard Ramu, wise minister, and clever parrot find a lost jewel - MORAL: Honesty solves mysteries",
+    "The brave washerman (Panchatantra) - A humble washerman, a king, and clever plans show courage - MORAL: Do the right thing even if poor",
+    "The talking mango (folk tale) - A magic mango, curious children, and a trickster teach respect for elders - MORAL: Listen to good advice",
+    "Onion and the clever farmer - Farmer Raju, animals, and a clever trick show resourcefulness - MORAL: Use your head to solve problems",
+    "The festival of lights - Siblings preparing for Diwali with neighbors, lanterns, and kindness - MORAL: Celebrations are better when shared",
+    "The boy and the banyan tree - Young Sohan, friends, and an old banyan provide shelter and lessons - MORAL: Protect and care for elders",
+    "The princess who loved books - Bookish princess Tara, librarian, and village children spread learning - MORAL: Knowledge frees the mind",
+    "The clever tailor - Tailor Hari, king, and friends teach humility and quick thinking - MORAL: Humility is strength",
+    "The honest woodcutter - Kind woodcutter, magical spirit, and lost axe tell truth wins reward - MORAL: Honesty is its own reward",
+    "The boy who raced the train - Curious boy Kunal, helpful conductor, and cautious parents learn safety - MORAL: Safety first",
+    "The kite that would not fly - Little girl Maya, her brother, and a wise neighbor fix the kite with patience - MORAL: Practice makes better",
+    "The golden sparrow - Crafty court, humble artisan, and a loyal bird teach justice - MORAL: Greed brings trouble",
+    "The three brothers and the mango - Three brothers, a mango tree, and fair sharing teach fairness - MORAL: Share with love",
+    "The village that sang - Music-loving villagers, traveling musician, and shy child show joy of art - MORAL: Music brings people together",
+    "The brave fisher boy - Young fisher Anil, father, and sea creatures show bravery and care - MORAL: Courage with care helps others",
+    "The little temple bell - A small bell, temple priest, and children learn respect for traditions - MORAL: Small things matter",
+    "The elephant who wanted to dance - Playful elephant, circus friends, and a kind trainer learn acceptance - MORAL: Be yourself",
+    "The rainmaker's promise - Farmer Lata, rainmaker elder, and village celebrate cooperation - MORAL: Work together to succeed",
+    "The silver flute - Child musician, village fair, and a shy songbird teach confidence - MORAL: Share your gift",
+    "The brave girl who climbed the mountain - Adventurous girl, guide, and mountain animals learn perseverance - MORAL: Aim high and be brave",
+    "The little bridge that connected two villages - Builders, children, and elders unite for friendship - MORAL: Bridges bring people closer",
+    "The moonlight thief (gentle ghost tale) - Kind ghost, curious children, and town elders learn kindness - MORAL: Understand before judging",
+    "The gardener's secret - Gardener Meena, children, and plants show care for environment - MORAL: Nature rewards patience",
+    "The tiny hero of the granary - Mouse, farmer, and clever cat protect the grain - MORAL: Even small friends help big tasks",
+    "The princess and the talking parrot - Princess Leela, talking parrot, and court learn truth matters - MORAL: Truth always helps",
+    "The wise tortoise and the impatient hare (Panchatantra) - Tortoise, hare, and race teach steady progress - MORAL: Slow and steady wins",
+    "The festival of kites - Neighborhood children, kites, and friendly competition teach sportsmanship - MORAL: Win with grace",
+    "The mystery of the missing cow - Village detective child, cows, and kind neighbor solve with teamwork - MORAL: Help your community",
+    "The cloud who forgot to rain - Cloud, thirsty field, and children remind compassion - MORAL: Care for those in need",
+    "The little boat that became a big ship - Dreamer Raju, mentors, and sea friends show growth - MORAL: Dreams grow with effort",
+    "The toy maker's lesson - Toy maker, children, and a broken toy teach repair and love - MORAL: Fix, don't discard",
+    "The brave squirrel and the mango festival - Squirrel, children, and festival guards protect the harvest - MORAL: Protect what matters",
+    "The festival of colors - Siblings celebrate Holi with neighbors learning forgiveness - MORAL: Colors of kindness",
+    "The shepherd who saved the night - Shepherd boy, animals, and stars show responsibility - MORAL: Care for those who depend on you",
+    "The star that fell in the river - Curious child, wise elder, and river spirits learn wonder - MORAL: Keep curiosity alive",
+    "The boy who learned to count - Little student, teacher, and chalk teach math is fun - MORAL: Learn with joy",
+    "The copper coin and the wise king - Poor family, king, and a test of honesty teach fairness - MORAL: True wealth is honesty",
+    "The lost tambourine - Music class, missing instrument, and teamwork solve the case - MORAL: Work together to find solutions",
+    "The brave camel at the desert fair - Camel, child rider, and desert folk show adaptability - MORAL: Adjust and keep going",
+    "The little lighthouse keeper - Young keeper, ships, and storm teach duty - MORAL: Perseverance saves lives",
+    "The mango seller's kindness - Seller, hungry child, and neighbors teach giving - MORAL: Small kindness counts",
+    "The painter who painted the sun - Young painter, village wall, and children learn expression - MORAL: Art brightens life",
+    "The lost letter - Postman, child, and long journey reunite friends - MORAL: Keep promises",
+    "The child who taught the tiger to be gentle - Clever child, tiger cub, and forest friends teach taming anger - MORAL: Patience changes hearts",
+    "The little shop that helped everyone - Shopkeeper, villagers, and shared trust build community - MORAL: Be helpful",
+    "The moon and the mango tree - Night tale where moon visits a tree to comfort it - MORAL: Care comforts",
+    "The kite of hope - Orphan child, a kite, and a kind mentor show hope - MORAL: Hope lifts us",
+    "The cinnamon merchant's journey - Merchant, helpful animals, and markets teach honesty in trade - MORAL: Fair trade matters",
+    "The clever crow and the pitcher (classic fable) - Thirsty crow, water pitcher, and pebbles show ingenuity - MORAL: Use your wit",
+    "The rabbit who loved carrots - Rabbit, friends, and a kind farmer teach gratitude - MORAL: Appreciate helpers",
+    "The boy who made a clock - Inventive child, teacher, and village learn creativity - MORAL: Create to help others",
+    "The little festival of lamps - Village lights, children, and neighbors celebrate unity - MORAL: Light beats darkness",
+    "The story of the banyan and the peepal - Two trees teach cooperation and sharing shade - MORAL: Share resources",
+    "The fisherman and the moonfish - Fisher, magical fish, and choice teach responsibility - MORAL: Take care of gifts",
+    "The tailor who mended a kingdom - Tailor, king, and villagers mend clothes and hearts - MORAL: Small acts heal",
+    "The brave boy and the wild horse - Boy, horse, and trainer build trust - MORAL: Trust matters",
+    "The little doctor of the village - Young healer, sick animals, and learning teach care - MORAL: Help where you can",
+    "The silversmith's promise - Silversmith, apprentice, and community learn keeping promises - MORAL: Keep your word",
+    "The story of two sisters - Sisterly bond, challenges, and kindness teach family love - MORAL: Sisters support each other",
+    "The seed that never gave up - Tiny seed, gardener, and forest show persistence - MORAL: Never give up",
+    "The brave rooster - Rooster, farm friends, and sunrise teach duty - MORAL: Wake up and do your part",
+    "The little library - Children start a library, share books, and change the town - MORAL: Share knowledge",
+    "The festival of boats - Riverfolk, boats, and children celebrate safe journeys - MORAL: Prepare and help others",
+    "The story of the gentle giant - Gentle giant, children, and village learn kindness regardless of size - MORAL: Size doesn't define heart",
+    "The child who mended songs - Shy singer, teacher, and friends find voice - MORAL: Practice brings confidence",
+    "The lost seedling - Child gardener, storm, and neighbors save a sapling - MORAL: Protect new life",
+    "The night the moon sang - Magical night story about music and dreams - MORAL: Dream with joy",
+    "The brave painter and the rainbow - Painter, children, and rain create joy - MORAL: Spread color and cheer",
+    "The little clocktower - Town clock, caretaker, and children learn punctuality - MORAL: Value time",
+    "The story of a small hero - Every-day courage from ordinary kids helping others - MORAL: Small heroes matter",
+    "The festival of harvest - Farmers, families, and children celebrate hard work - MORAL: Appreciate effort",
+    "The little boat that shared its shade - Boat, sun, and friends help others cool off - MORAL: Share what you have",
+    "The child and the paper bird - Origami bird, imagination, and flight teach creativity - MORAL: Make things with love",
+    "The story of the two gardens - Neighboring gardens learn to share water and grow together - MORAL: Cooperation grows abundance"
 ]
 
 async def generate_voiceover(text, output_path, voice, retries=3):
@@ -107,35 +191,92 @@ def download_image(prompt, output_path, retries=3):
 
 
 def generate_fallback_story(topic, num_scenes):
+    # Create a lively, kid-friendly topic-driven fallback story
+    print(f"Using fallback story for topic: {topic[:120]}")
+
+    # Extract title and moral when available
+    title = None
+    moral = "Be kind to everyone"
+    desc = topic
+
+    if " - " in topic:
+        title_candidate, rest = topic.split(" - ", 1)
+        title = title_candidate.strip()
+        desc = rest.strip()
+    else:
+        title = " ".join(topic.split()[:6]).strip()
+
+    if "MORAL:" in topic:
+        moral_candidate = topic.split("MORAL:", 1)[1].strip()
+        if moral_candidate:
+            moral = moral_candidate
+    else:
+        if "MORAL" in desc:
+            parts = desc.rsplit("MORAL", 1)
+            if len(parts) > 1:
+                moral = parts[1].strip(': -\n ')
+
+    # Friendly character pool and vibrant backgrounds/props
+    char_pool = ["Asha", "Ravi", "Mira", "Kiran", "Gajraj", "Devi", "Lila", "Veer", "Anu", "Satya", "Bittu", "Rani", "Arjun", "Tara", "Neel"]
+    random.shuffle(char_pool)
+    characters = char_pool[:4]
+
+    backgrounds = ["sunny village", "colorful market", "bamboo forest", "sea shore", "flower garden", "royal courtyard", "mountain path", "ancient temple"]
+    props = ["bright kite", "golden drum", "paper boat", "shiny lamp", "wooden toy", "magic mango", "friendly elephant"]
+
+    # Kid-friendly narration templates with action and emotion cues
+    templates = [
+        "{c} jumps out of bed with a big smile and says, 'Today we will explore {title}!'",
+        "{c} and friends discover a sparkling place where something surprising happens.",
+        "When {c} helps a friend, everyone claps and learns how kindness saves the day.",
+        "{c} shares a tasty snack and learns how sharing makes new friends.",
+        "Together they build a playful invention and dance to celebrate teamwork.",
+        "{c} tells a funny little story about {title} that makes everyone giggle.",
+        "A friendly animal pops in to guide {c} on a cheerful adventure.",
+        "{c} bravely stands up to help someone and learns that courage is gentle."
+    ]
+
+    scenes = []
+    for i in range(num_scenes):
+        name = characters[i % len(characters)]
+        template = templates[i % len(templates)]
+        narration = template.format(c=name, title=title)
+        # Keep narrations short and cheerful
+        narration = narration.replace('  ', ' ').strip()
+        if not narration.endswith('.'):
+            narration += '.'
+
+        # Build an animation-friendly image prompt: character action, expression, background, prop, camera angle
+        bg = random.choice(backgrounds)
+        prop = random.choice(props)
+        actions = ["running", "jumping", "dancing", "smiling", "pointing", "hugging", "playing", "discovering"]
+        action = random.choice(actions)
+        expressions = ["happy", "curious", "surprised", "proud", "gentle"]
+        expr = random.choice(expressions)
+        camera_angles = ["wide shot", "close-up", "mid shot", "low angle", "overhead"]
+        cam = random.choice(camera_angles)
+
+        image_prompt = (
+            f"animated, cute cartoon {name} {action} with a {expr} expression, "
+            f"background: {bg}, prop: {prop}, {cam}, bright colorful lighting, Pixar style, kid-friendly action"
+        )
+
+        scenes.append({"narration": narration, "image_prompt": image_prompt})
+
     story = {
-        "title": "Emperor Ashoka's Transformation",
-        "moral": "True victory is winning hearts with kindness",
-        "scenes": [
-            {"narration": "Long ago in ancient India, there lived a young warrior prince named Ashoka. He was very brave and strong!", "image_prompt": "cute cartoon young Indian prince Ashoka in golden palace, bright colors, Pixar style"},
-            {"narration": "Ashoka had three best friends - his wife Devi, his advisor Radhagupta, and his elephant friend Gajraj!", "image_prompt": "cartoon prince Ashoka with wife Devi, advisor, and cute elephant friend, Indian palace"},
-            {"narration": "One day, Ashoka went to fight a big war. He wanted to win and be the greatest king!", "image_prompt": "cartoon prince Ashoka on elephant going to battle, colorful Indian army"},
-            {"narration": "But after the war, Ashoka saw something that made him very sad. Many people were hurt.", "image_prompt": "sad cartoon Ashoka looking at aftermath, somber but child-friendly"},
-            {"narration": "Ashoka's heart broke. He said - What have I done? This is not victory!", "image_prompt": "cartoon Ashoka with tears, elephant Gajraj comforting him"},
-            {"narration": "Kind Devi said - Dear Ashoka, true kings help people, they don't hurt them.", "image_prompt": "cartoon wife Devi comforting Ashoka, warm lighting"},
-            {"narration": "From that day, Ashoka changed! He decided to never fight wars again.", "image_prompt": "cartoon Ashoka making a promise, glowing aura, transformation"},
-            {"narration": "Instead, Ashoka built hospitals for sick people and animals!", "image_prompt": "cartoon Ashoka building hospital, doctors helping people"},
-            {"narration": "He planted thousands of trees so travelers could rest in the shade.", "image_prompt": "cartoon Ashoka planting trees with villagers, sunny day"},
-            {"narration": "Ashoka dug wells so everyone had clean water to drink!", "image_prompt": "cartoon Ashoka near a well, villagers drinking water"},
-            {"narration": "He built tall pillars with lion statues and messages of peace!", "image_prompt": "cartoon Ashoka with famous lion pillar, four lions on top"},
-            {"narration": "Gajraj the elephant was so proud! My friend is the kindest king!", "image_prompt": "happy cartoon elephant Gajraj with Ashoka, celebrating"},
-            {"narration": "People from far away came to see the peaceful kingdom!", "image_prompt": "cartoon visitors meeting Ashoka, diverse characters"},
-            {"narration": "Children loved Emperor Ashoka. He would play with them!", "image_prompt": "cartoon Ashoka playing with happy children in garden"},
-            {"narration": "Even today, the lion pillar is the symbol of India!", "image_prompt": "cartoon showing Ashoka pillar and Indian emblem"},
-            {"narration": "Remember - true victory is making others happy!", "image_prompt": "cartoon Ashoka with friends, hearts and peace symbols"},
-            {"narration": "And that is the story of Emperor Ashoka! The End!", "image_prompt": "happy ending with Ashoka and friends waving, THE END"}
-        ]
+        "title": title or "A Wonderful Story",
+        "moral": moral or "Be kind to everyone",
+        "scenes": scenes[:num_scenes]
     }
-    story["scenes"] = story["scenes"][:num_scenes]
     return story
 
 
 def generate_story_with_groq(topic, num_scenes, groq_api_key, video_language, lang_name):
+    print(f"generate_story_with_groq: requested language={video_language}, num_scenes={num_scenes}")
+    print(f"GROQ API key provided: {bool(groq_api_key)}")
+
     if not groq_api_key:
+        print("No GROQ_API_KEY found — using local fallback story. Set GROQ_API_KEY to enable remote generation.")
         return generate_fallback_story(topic, num_scenes)
 
     lang_instruction = ""
@@ -177,6 +318,10 @@ REQUIREMENTS:
 - NO scary content, NO violence
 - End with "The End!" and moral
 
+IMAGE PROMPT RULES (IMPORTANT):
+- Each scene's "image_prompt" must be a short English phrase describing the scene and include clear animation cues: a simple action (e.g. running, jumping), character expression (e.g. happy, surprised), background, a prop if relevant, and a camera angle (e.g. close-up, wide shot).
+- Keep prompts child-friendly, vivid, and suitable for generating bright 2D/3D style animations.
+
 Return ONLY valid JSON:
 {{"title": "Story Title", "moral": "The moral", "scenes": [{{"narration": "Text", "image_prompt": "Description in English"}}]}}"""
                     },
@@ -187,15 +332,35 @@ Return ONLY valid JSON:
             },
             timeout=90
         )
+
+        print(f"Groq request completed, status={response.status_code}")
+        try:
+            snippet = response.text[:300]
+            print(f"Groq response snippet: {snippet}")
+        except Exception:
+            pass
+
         if response.status_code == 200:
-            content = response.json()['choices'][0]['message']['content']
-            content = content.replace('```json', '').replace('```', '').strip()
-            story = json.loads(content)
-            if len(story.get('scenes', [])) >= num_scenes:
-                return story
+            try:
+                content = response.json()['choices'][0]['message']['content']
+                content = content.replace('```json', '').replace('```', '').strip()
+                print(f"Groq returned content length={len(content)}")
+                story = json.loads(content)
+                if len(story.get('scenes', [])) >= num_scenes:
+                    return story
+                else:
+                    print(f"Groq story had {len(story.get('scenes', []))} scenes, needed {num_scenes} — falling back.")
+            except Exception as e:
+                print(f"Failed to parse Groq response as JSON: {e}")
+                # show short response to help debugging
+                try:
+                    print("Groq raw content (short):", response.text[:800])
+                except Exception:
+                    pass
     except Exception as e:
         print(f"Groq API error: {e}")
 
+    print("Using local fallback story due to Groq failure or invalid response.")
     return generate_fallback_story(topic, num_scenes)
 
 
@@ -259,7 +424,7 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
 
     print(f"Language: {LANG_NAME} ({VOICE})")
 
-    NUM_SCENES = 8 if TEST_MODE else 35
+    NUM_SCENES = 8 if TEST_MODE else 48
 
     print("=" * 60)
     print("KIDS STORY VIDEO GENERATOR")
