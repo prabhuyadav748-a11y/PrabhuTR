@@ -13,6 +13,9 @@ import edge_tts
 from moviepy.editor import (
     ImageClip, AudioFileClip, concatenate_videoclips
 )
+from moviepy.editor import concatenate_audioclips
+from moviepy.audio.AudioClip import AudioClip
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 # Optional Google / GitHub upload imports
@@ -560,11 +563,24 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
     if cumulative_audio_seconds < TARGET_SECONDS:
         extra = TARGET_SECONDS - cumulative_audio_seconds
         print(f"Extending final clip by {extra:.1f}s to reach target duration {TARGET_SECONDS}s")
-        # extend the last clip (ending card) by extra seconds
+        # extend the last clip (ending card) by extra seconds and pad audio with silence
         last_clip = video_clips[-1]
         new_duration = last_clip.duration + extra
-        last_clip = last_clip.set_duration(new_duration)
-        video_clips[-1] = last_clip
+        try:
+            last_audio = last_clip.audio
+            # create silence AudioClip
+            silence = AudioClip(lambda t: np.zeros_like(t), duration=extra, fps=44100)
+            if last_audio is None:
+                new_audio = silence
+            else:
+                new_audio = concatenate_audioclips([last_audio, silence])
+
+            last_clip = last_clip.set_audio(new_audio).set_duration(new_duration)
+            video_clips[-1] = last_clip
+        except Exception as e:
+            print(f"Failed to extend audio cleanly: {e}. Falling back to visual-only extension.")
+            last_clip = last_clip.set_duration(new_duration)
+            video_clips[-1] = last_clip
 
     print("\nCombining clips...")
     final_video = concatenate_videoclips(video_clips, method="compose")
