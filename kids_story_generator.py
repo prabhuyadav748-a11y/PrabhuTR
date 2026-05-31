@@ -568,8 +568,8 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
         new_duration = last_clip.duration + extra
         try:
             last_audio = last_clip.audio
-            # create silence AudioClip
-            silence = AudioClip(lambda t: np.zeros_like(t), duration=extra, fps=44100)
+            # create silence AudioClip (mono) returning 0.0 for any t
+            silence = AudioClip(lambda t: 0.0, duration=extra, fps=44100)
             if last_audio is None:
                 new_audio = silence
             else:
@@ -578,8 +578,9 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
             last_clip = last_clip.set_audio(new_audio).set_duration(new_duration)
             video_clips[-1] = last_clip
         except Exception as e:
-            print(f"Failed to extend audio cleanly: {e}. Falling back to visual-only extension.")
-            last_clip = last_clip.set_duration(new_duration)
+            print(f"Failed to extend audio cleanly: {e}. Removing audio from final clip to avoid errors.")
+            # remove audio for the extended portion to avoid MoviePy reading past file end
+            last_clip = last_clip.set_audio(None).set_duration(new_duration)
             video_clips[-1] = last_clip
 
     print("\nCombining clips...")
