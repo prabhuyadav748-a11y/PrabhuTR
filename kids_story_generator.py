@@ -186,11 +186,47 @@ def download_image(prompt, output_path, retries=3):
 
     colors = [(255, 182, 193), (173, 216, 230), (144, 238, 144), (255, 218, 185), (255, 255, 200), (230, 190, 255)]
     img = Image.new('RGB', (1280, 720), random.choice(colors))
+    draw = ImageDraw.Draw(img)
+    try:
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 28)
+    except Exception:
+        font = ImageFont.load_default()
+    # write a short part of the prompt to make placeholder images unique
+    short = (prompt[:180] + '...') if len(prompt) > 180 else prompt
+    draw.text((30, 340), short, fill=(0, 0, 0), font=font)
     img.save(output_path)
     return False
 
 
-def generate_fallback_story(topic, num_scenes):
+def translate_text(text, target_lang_code, retries=2):
+    """Try to translate text from English to target_lang_code using public LibreTranslate endpoints.
+    If translation fails, return original text."""
+    if not target_lang_code or target_lang_code == 'en':
+        return text
+    endpoints = ["https://libretranslate.de/translate", "https://libretranslate.com/translate"]
+    for ep in endpoints:
+        for attempt in range(retries):
+            try:
+                resp = requests.post(ep, data={
+                    'q': text,
+                    'source': 'en',
+                    'target': target_lang_code,
+                    'format': 'text'
+                }, timeout=10)
+                if resp.status_code == 200:
+                    j = resp.json()
+                    translated = j.get('translatedText') or j.get('translation') or ''
+                    if translated:
+                        return translated
+                else:
+                    # try next endpoint
+                    break
+            except Exception:
+                continue
+    return text
+
+
+def generate_fallback_story(topic, num_scenes, video_language='english'):
     # Create a lively, kid-friendly topic-driven fallback story
     print(f"Using fallback story for topic: {topic[:120]}")
 
@@ -238,8 +274,9 @@ def generate_fallback_story(topic, num_scenes):
 
     scenes = []
     for i in range(num_scenes):
-        name = characters[i % len(characters)]
-        template = templates[i % len(templates)]
+        # pick random character and template for variety
+        name = random.choice(characters)
+        template = random.choice(templates)
         narration = template.format(c=name, title=title)
         # Keep narrations short and cheerful
         narration = narration.replace('  ', ' ').strip()
@@ -268,6 +305,23 @@ def generate_fallback_story(topic, num_scenes):
         "moral": moral or "Be kind to everyone",
         "scenes": scenes[:num_scenes]
     }
+    # Translate fallback into target language (except image_prompts remain English)
+    lang_map = {
+        'english': 'en', 'hindi': 'hi', 'tamil': 'ta', 'telugu': 'te', 'kannada': 'kn',
+        'malayalam': 'ml', 'bengali': 'bn', 'marathi': 'mr'
+    }
+    target_code = lang_map.get(video_language.lower(), 'en')
+    if video_language.lower() != 'english' and target_code != 'en':
+        print(f"Translating fallback story to {video_language} ({target_code})")
+        try:
+            story['title'] = translate_text(story['title'], target_code)
+            story['moral'] = translate_text(story['moral'], target_code)
+            for s in story['scenes']:
+                s['narration'] = translate_text(s['narration'], target_code)
+            print("Translation complete for fallback story.")
+        except Exception as e:
+            print(f"Fallback translation failed: {e}")
+
     return story
 
 
@@ -277,7 +331,7 @@ def generate_story_with_groq(topic, num_scenes, groq_api_key, video_language, la
 
     if not groq_api_key:
         print("No GROQ_API_KEY found — using local fallback story. Set GROQ_API_KEY to enable remote generation.")
-        return generate_fallback_story(topic, num_scenes)
+        return generate_fallback_story(topic, num_scenes, video_language)
 
     lang_instruction = ""
     if video_language != "english":
@@ -312,7 +366,7 @@ Example: {example}
                         "content": f"""You are a children's story writer for kids aged 4-8.
 {lang_instruction}
 REQUIREMENTS:
-- Story must have EXACTLY {num_scenes} scenes
+- Aim for about {num_scenes} scenes (the caller may accept fewer or more)
 - Each narration: 2-3 simple sentences
 - Use 3-4 NAMED cartoon characters with distinct looks
 - NO scary content, NO violence
@@ -361,7 +415,7 @@ Return ONLY valid JSON:
         print(f"Groq API error: {e}")
 
     print("Using local fallback story due to Groq failure or invalid response.")
-    return generate_fallback_story(topic, num_scenes)
+    return generate_fallback_story(topic, num_scenes, video_language)
 
 
 def create_intro_card(title, output_path):
@@ -424,27 +478,36 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
 
     print(f"Language: {LANG_NAME} ({VOICE})")
 
-    NUM_SCENES = 8 if TEST_MODE else 48
+    # Desired scenes but also target duration (seconds) for final video
+    DESIRED_NUM_SCENES = 8 if TEST_MODE else 48
+    TARGET_SECONDS = 60 if TEST_MODE else 8 * 60  # 8 minutes target for full run
+
+    # Verify voice configuration exists, fallback to English voice if missing
+    if not VOICE:
+        print(f"Warning: No voice configured for language '{VIDEO_LANGUAGE}'. Falling back to English voice.")
+        VOICE = LANGUAGE_CONFIG['english']['voice']
 
     print("=" * 60)
     print("KIDS STORY VIDEO GENERATOR")
     print("=" * 60)
-
+ 
     topic = random.choice(TRENDING_TOPICS)
     print(f"\nSelected topic: {topic[:80]}...")
-
+ 
     print("\nGenerating story...")
-    story = generate_story_with_groq(topic, NUM_SCENES, groq_api_key, VIDEO_LANGUAGE, LANG_NAME)
-
+    story = generate_story_with_groq(topic, DESIRED_NUM_SCENES, groq_api_key, VIDEO_LANGUAGE, LANG_NAME)
+ 
     title = story.get('title', 'A Wonderful Story')
     moral = story.get('moral', 'Be kind to everyone')
     scenes = story.get('scenes', [])
-
+    ACTUAL_NUM_SCENES = len(scenes)
+ 
     print(f"Title: {title}")
     print(f"Moral: {moral}")
-    print(f"Scenes: {len(scenes)}")
+    print(f"Desired scenes: {DESIRED_NUM_SCENES}, Actual scenes returned: {ACTUAL_NUM_SCENES}")
 
     video_clips = []
+    cumulative_audio_seconds = 0.0
 
     # Intro
     print("\nCreating intro...")
@@ -463,16 +526,24 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
         narration = scene.get('narration', '')
         image_prompt = scene.get('image_prompt', '')
 
-        img_path = TEMP_DIR / f"scene_{i}.png"
-        audio_path = TEMP_DIR / f"scene_{i}.mp3"
+        # create a unique id to reduce repeated images and filename collisions
+        uid = datetime.now().strftime('%Y%m%d%H%M%S') + f"_{random.randint(1000,9999)}"
+        img_path = TEMP_DIR / f"scene_{i}_{uid}.png"
+        audio_path = TEMP_DIR / f"scene_{i}_{uid}.mp3"
 
-        download_image(image_prompt, img_path)
+        # Append a scene uid/seed to the prompt so image service returns varied images
+        prompt_with_uid = f"{image_prompt}, scene {i+1}, uid {uid}, seed {random.randint(1,999999)}"
+        print(f"  Image prompt: {prompt_with_uid[:200]}")
+
+        # try downloading image (the function already retries), pass the unique prompt
+        download_image(prompt_with_uid, img_path)
         await generate_voiceover(narration, str(audio_path), VOICE)
 
         audio = AudioFileClip(str(audio_path))
         clip = ImageClip(str(img_path)).set_duration(audio.duration).set_audio(audio)
         video_clips.append(clip)
-        print(f"  Done ({audio.duration:.1f}s)")
+        cumulative_audio_seconds += audio.duration
+        print(f"  Done ({audio.duration:.1f}s), cumulative audio: {cumulative_audio_seconds:.1f}s")
 
     # Ending
     print("\nCreating ending...")
@@ -483,6 +554,17 @@ async def generate_video(test_mode: bool, video_language: str, groq_api_key: str
     audio = AudioFileClip(str(ending_audio))
     clip = ImageClip(str(ending_img)).set_duration(audio.duration).set_audio(audio)
     video_clips.append(clip)
+    cumulative_audio_seconds += audio.duration
+
+    # If cumulative audio is shorter than target, extend last clip duration to meet target
+    if cumulative_audio_seconds < TARGET_SECONDS:
+        extra = TARGET_SECONDS - cumulative_audio_seconds
+        print(f"Extending final clip by {extra:.1f}s to reach target duration {TARGET_SECONDS}s")
+        # extend the last clip (ending card) by extra seconds
+        last_clip = video_clips[-1]
+        new_duration = last_clip.duration + extra
+        last_clip = last_clip.set_duration(new_duration)
+        video_clips[-1] = last_clip
 
     print("\nCombining clips...")
     final_video = concatenate_videoclips(video_clips, method="compose")
